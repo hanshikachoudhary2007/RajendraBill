@@ -101,12 +101,14 @@ function calculate(){
  let less=Number(document.getElementById('less').value)||0;
  let disc=subtotal*less/100;
  let finalAmt=subtotal-disc;
+ let plusGST = finalAmt * 1.18;
 
- document.getElementById('result').innerHTML=
- `<b>Total Quantity:</b> ${count}<br>
- <b>Subtotal:</b> ₹${subtotal.toLocaleString()}<br>
+document.getElementById('result').innerHTML=
+`<b>Total Quantity:</b> ${count}<br>
+ <b>List Value:</b> ₹${subtotal.toLocaleString()}<br>
  <b>Discount:</b> ₹${disc.toLocaleString()}<br>
- <b>Final Amount:</b> ₹${finalAmt.toLocaleString()}`;
+ <b>Final Amount:</b> ₹${finalAmt.toLocaleString()}<br>
+ <b>Plus GST (18%):</b> ₹${plusGST.toLocaleString()}`;
 }
 
 function clearAll(){
