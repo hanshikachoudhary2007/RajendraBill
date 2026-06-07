@@ -4,14 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wire Bill Calculator </title>
+
 <style>
 body{font-family:Arial;background:#f5f5f5;padding:15px}
 .card{max-width:950px;margin:auto;background:white;padding:20px;border-radius:12px}
 table{width:100%;border-collapse:collapse}
-th,td{border:1px solid #ddd;padding:8px;text-align:center}
-select,input{width:100%;padding:8px;box-sizing:border-box}
-button{padding:12px 16px;font-size:16px;margin:5px;cursor:pointer}
+th,td{
+ border:1px solid #ddd;
+ padding:6px;
+ text-align:center;
+}
+
+select,input{
+ width:100%;
+ padding:8px;
+ box-sizing:border-box;
+}
+
+button{
+ padding:10px 14px;
+ font-size:15px;
+ margin:4px;
+ cursor:pointer;
+}
 .result{margin-top:20px;font-size:18px;line-height:1.8}
+
+@media (max-width:768px){
+
+ body{
+  padding:8px;
+ }
+
+ .card{
+  padding:10px;
+ }
+
+ table{
+  table-layout:fixed;
+ }
+
+ th:nth-child(1),
+ td:nth-child(1){
+  width:32%;
+ }
+
+ th:nth-child(2),
+ td:nth-child(2){
+  width:18%;
+ }
+
+ th:nth-child(3),
+ td:nth-child(3){
+  width:18%;
+  font-size:11px;
+ }
+
+ th:nth-child(4),
+ td:nth-child(4){
+  width:22%;
+  font-size:11px;
+ }
+
+ th:nth-child(5),
+ td:nth-child(5){
+  width:10%;
+ }
+
+ select,
+ input{
+  font-size:14px;
+  padding:6px;
+ }
+
+ .qty{
+  text-align:center;
+ }
+
+ td button{
+  padding:4px 6px;
+  font-size:11px;
+  margin:0;
+ }
+
+ .rate,
+ .amt{
+  font-size:11px;
+  word-break:break-word;
+ }
+
+ h2{
+  font-size:20px;
+ }
+}
 </style>
 </head>
 <body>
@@ -26,9 +110,9 @@ button{padding:12px 16px;font-size:16px;margin:5px;cursor:pointer}
 <tr>
 <th>Size</th>
 <th>Qty</th>
-<th>Rate</th>
-<th>Amount</th>
-<th>Remove</th>
+<th>₹</th>
+<th>Total</th>
+<th>✕</th>
 </tr>
 </thead>
 <tbody></tbody>
@@ -72,11 +156,28 @@ function populate(sel){
 
 function addRow(){
  let tr=document.createElement('tr');
- tr.innerHTML=`<td><select class="size"></select></td>
- <td><input type="number" class="qty" value="1" min="1"></td>
+
+ tr.innerHTML=`
+ <td>
+   <select class="size"></select>
+ </td>
+
+ <td>
+   <input type="number"
+          class="qty"
+          placeholder="0"
+          inputmode="numeric"
+          min="0">
+ </td>
+
  <td class="rate"></td>
+
  <td class="amt"></td>
- <td><button onclick="this.closest('tr').remove()">X</button></td>`;
+
+ <td>
+   <button onclick="this.closest('tr').remove()">✕</button>
+ </td>`;
+
  document.querySelector('#tbl tbody').appendChild(tr);
  populate(tr.querySelector('.size'));
 }
